@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+PASS=GreatIris2001@
+#apt-get install at -y
+clear
+
+for num in `seq 100 103` at -t 6:00 12:00 18:00 0:00
+
+do
+      cd /NAS/Plex/Archive/
+       host=192.168.0.${num}
+       date=$(date)
+       mkdir -p PiBackup\${host}\${date}\
+       localpath=PiBackup\${host}\${date}\
+       remotepath="${host}:*"
+       rsync -avz --rsh="sshpass -p ${PASS} ssh -l root -oStrictHostKeyChecking=accept-new" "$remotepath" "$localpath" done
+done
